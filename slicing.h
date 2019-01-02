@@ -6,7 +6,7 @@
 
 #include "pch.h"
 
-#include "gsl/pointers"
+#include "gsl-lite.hpp"
 
 // polymorphic class suppresses copying
 class B 
@@ -30,7 +30,7 @@ class D : public B
 public:
     //char m() override { return 'D'; }
 
-    virtual ~D() override { /* ... */ }
+    ~D() { /* ... */ }
 
     // implement clone()
     gsl::owner<D*> clone() override { /* ... */ return nullptr; }

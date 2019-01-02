@@ -4,7 +4,7 @@
 // Prefer implementeing RAII, Rule-of-0 and use span<>
 
 #include <stdint.h>
-#include "gsl/pointers"
+#include "gsl-lite.hpp"
 
 class RuleOf5
 {

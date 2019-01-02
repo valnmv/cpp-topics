@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-#include "gsl/pointers"
+#include "gsl-lite.hpp"
 
 class RuleOf4Half
 {
