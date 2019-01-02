@@ -171,7 +171,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RuleOf5.cpp" />
-    <ClCompile Include="slice.cpp" />
+    <ClCompile Include="slicing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GSL\include\gsl\gsl" />

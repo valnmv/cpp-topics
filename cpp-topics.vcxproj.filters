@@ -5,7 +5,7 @@
     <ClCompile Include="copy-and-swap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RuleOf5.cpp" />
-    <ClCompile Include="slice.cpp" />
+    <ClCompile Include="slicing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
