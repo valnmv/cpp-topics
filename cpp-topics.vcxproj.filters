@@ -2,9 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="copy-and-swap.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="RuleOf5.cpp" />
+    <ClCompile Include="slice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RuleOf5.h" />
+    <ClInclude Include="copy-and-swap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="gsl">
@@ -39,5 +45,6 @@
     <None Include="GSL\include\gsl\string_span">
       <Filter>gsl</Filter>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

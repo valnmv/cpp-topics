@@ -3,6 +3,9 @@
 
 #include "pch.h"
 #include "RuleOf5.h"
+#include "copy-and-swap.h"
+
+
 #include <iostream>
 
 // detect memory leaks
@@ -18,7 +21,7 @@ RuleOf5 create_object()
     return RuleOf5 { &data[0], 3 };
 }
 
-void TestRuleOf5()
+void test_RuleOf5()
 {
     // ctor()
     RuleOf5 r1;
@@ -42,10 +45,23 @@ void TestRuleOf5()
     r4 = std::move(r2);
 }
 
+void test_RuleOf4Half()
+{
+    uint8_t data[] = { 0x44, 0x45 };
+    RuleOf4Half r1{ &data[0], 2 };
+    
+    RuleOf4Half r2;
+    r2 = std::move(r1);
+    r1 = r2;
+}
+
 int main() 
 {   
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    TestRuleOf5();
+    
+    test_RuleOf5();
+   
+    test_RuleOf4Half();
 
     //  int arr[10];           // warning C26494
     //  int* p = arr;          // warning C26485

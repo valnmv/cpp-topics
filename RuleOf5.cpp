@@ -41,7 +41,6 @@ RuleOf5& RuleOf5::operator=(const RuleOf5 &other)
 // Note: if it is a derived class, first move-construct the base using std::move(other)
 RuleOf5::RuleOf5(RuleOf5 &&other) noexcept
 {
-    assert(data == nullptr);
     length = other.length;
     data = other.data;
     other.data = nullptr;

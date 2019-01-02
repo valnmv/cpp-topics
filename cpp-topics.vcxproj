@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="copy-and-swap.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RuleOf5.h" />
   </ItemGroup>
@@ -182,6 +183,7 @@
     <None Include="GSL\include\gsl\pointers" />
     <None Include="GSL\include\gsl\span" />
     <None Include="GSL\include\gsl\string_span" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
