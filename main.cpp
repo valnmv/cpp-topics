@@ -5,6 +5,7 @@
 #include "RuleOf5.h"
 #include "copy-and-swap.h"
 #include "slicing.h"
+#include "raii.h"
 
 #include <iostream>
 
@@ -55,21 +56,38 @@ void test_RuleOf4Half()
     r1 = r2;
 }
 
-void slicing(B& b)
+void test_slicing(B& b)
 {
-//    auto b2 = b; // oops, slices the object; b2.m() will return 'B'
-//    std::cout << b.m() << " " << b2.m();
+    // object attributes are sliced by assigning derived-to-base
+    // here the method is sliced
+    // disabled by deleting copy ctor and copy=
+
+    auto b2 = b; // oops, slices the object; d.m() will return 'B'
+    auto &b3 = b; // ... while the reference is fine
+    std::cout << b.m() << " " << b2.m() << " " << b3.m();
 }
 
-int main() 
+void test_raii()
+{
+    auto sp = shared_file_ptr("raii.cpp", "r");
+
+    char buf[100];
+    fread(buf, sizeof(char), sizeof(buf) / sizeof(char), sp.get());
+
+    // here fclose() is called by sp deleter
+}
+
+int main()
 {   
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
    
     test_RuleOf5();   
     test_RuleOf4Half();
-
+ 
     D d;
-    slicing(d);
+    test_slicing(d);
+
+    test_raii();
 
     //  int arr[10];           // warning C26494
     //  int* p = arr;          // warning C26485

@@ -8,31 +8,32 @@
 
 #include "gsl-lite.hpp"
 
-// polymorphic class suppresses copying
+// In order to fix slicing suppress copying in polymorphic classes as in
+// the commented out lines and implement clone() instead
 class B 
 {
 public:
-    //virtual char m() { return 'B'; }
+    virtual char m() { return 'B'; }
 
-    B() = default;
-    virtual ~B() = default;
+    //B() = default;
+    //virtual ~B() = default;
 
     // suppress copying
-    B(const B&) = delete;
-    B& operator=(const B&) = delete;
+    //B(const B&) = delete;
+    //B& operator=(const B&) = delete;
 
     // provide clone()
-    virtual gsl::owner<B*> clone() = 0;    
+    //virtual gsl::owner<B*> clone() = 0;    
 };
 
 class D : public B 
 {
 public:
-    //char m() override { return 'D'; }
+    char m() override { return 'D'; }
 
-    ~D() { /* ... */ }
+    //~D() { /* ... */ }
 
     // implement clone()
-    gsl::owner<D*> clone() override { /* ... */ return nullptr; }
+//    gsl::owner<D*> clone() override { /* ... */ return nullptr; }
 };
 

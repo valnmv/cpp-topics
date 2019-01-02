@@ -158,6 +158,8 @@
   <ItemGroup>
     <ClInclude Include="copy-and-swap.h" />
     <ClInclude Include="pch.h" />
+    <ClCompile Include="raii.cpp" />
+    <ClInclude Include="raii.h" />
     <ClInclude Include="RuleOf5.h" />
     <ClInclude Include="slicing.h" />
   </ItemGroup>
@@ -173,15 +175,6 @@
     <ClCompile Include="RuleOf5.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GSL\include\gsl\gsl" />
-    <None Include="GSL\include\gsl\gsl_algorithm" />
-    <None Include="GSL\include\gsl\gsl_assert" />
-    <None Include="GSL\include\gsl\gsl_byte" />
-    <None Include="GSL\include\gsl\gsl_util" />
-    <None Include="GSL\include\gsl\multi_span" />
-    <None Include="GSL\include\gsl\pointers" />
-    <None Include="GSL\include\gsl\span" />
-    <None Include="GSL\include\gsl\string_span" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

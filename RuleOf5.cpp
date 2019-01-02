@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "RuleOf5.h"
 
-#include <assert.h>
 #include <memory.h>
 
 RuleOf5::RuleOf5() noexcept
