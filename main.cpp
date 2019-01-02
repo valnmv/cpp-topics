@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "RuleOf5.h"
 #include "copy-and-swap.h"
-
+#include "slicing.h"
 
 #include <iostream>
 
@@ -55,13 +55,21 @@ void test_RuleOf4Half()
     r1 = r2;
 }
 
+void slicing(B& b)
+{
+//    auto b2 = b; // oops, slices the object; b2.m() will return 'B'
+//    std::cout << b.m() << " " << b2.m();
+}
+
 int main() 
 {   
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    
-    test_RuleOf5();
    
+    test_RuleOf5();   
     test_RuleOf4Half();
+
+    D d;
+    slicing(d);
 
     //  int arr[10];           // warning C26494
     //  int* p = arr;          // warning C26485

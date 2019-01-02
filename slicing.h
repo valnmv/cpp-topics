@@ -9,32 +9,30 @@
 #include "gsl/pointers"
 
 // polymorphic class suppresses copying
-class B {
+class B 
+{
 public:
-    virtual char m() { return 'B'; }
+    //virtual char m() { return 'B'; }
 
-    // supress copying
+    B() = default;
+    virtual ~B() = default;
+
+    // suppress copying
     B(const B&) = delete;
     B& operator=(const B&) = delete;
 
     // provide clone()
-    virtual gsl::owner<B*> clone() = 0;
-    virtual ~B() = 0;
+    virtual gsl::owner<B*> clone() = 0;    
 };
 
-class D : public B {
+class D : public B 
+{
 public:
-    char m() override { return 'D'; }
+    //char m() override { return 'D'; }
 
-    gsl::owner<D*> clone() override { /* ... */ }
     virtual ~D() override { /* ... */ }
+
+    // implement clone()
+    gsl::owner<D*> clone() override { /* ... */ return nullptr; }
 };
 
-void f(B& b) {
-/* compile error:
-    auto b2 = b; // ok, compiler will detect inadvertent copying, and protest
-*/
-}
-
-//D d;
-//f(d);

@@ -5,12 +5,12 @@
     <ClCompile Include="copy-and-swap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RuleOf5.cpp" />
-    <ClCompile Include="slicing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="RuleOf5.h" />
     <ClInclude Include="copy-and-swap.h" />
+    <ClInclude Include="slicing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="gsl">

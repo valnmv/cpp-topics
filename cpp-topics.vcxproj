@@ -160,6 +160,7 @@
     <ClInclude Include="copy-and-swap.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RuleOf5.h" />
+    <ClInclude Include="slicing.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="copy-and-swap.cpp" />
@@ -171,7 +172,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RuleOf5.cpp" />
-    <ClCompile Include="slicing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GSL\include\gsl\gsl" />
