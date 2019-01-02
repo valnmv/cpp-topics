@@ -7,7 +7,7 @@
 
 std::shared_ptr<FILE> shared_file_ptr(const char *filename, const char *flags)
 {
-    FILE *f;
+    FILE *f = nullptr;
     fopen_s(&f, filename, flags);
     auto sp = std::shared_ptr<FILE>(f, [](auto p) { 
         if (p) 

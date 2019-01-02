@@ -13,7 +13,7 @@
 class B 
 {
 public:
-    virtual char m() { return 'B'; }
+    virtual char m() noexcept { return 'B'; }
 
     //B() = default;
     //virtual ~B() = default;
@@ -29,7 +29,7 @@ public:
 class D : public B 
 {
 public:
-    char m() override { return 'D'; }
+    char m() noexcept override { return 'D'; }
 
     //~D() { /* ... */ }
 

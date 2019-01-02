@@ -77,6 +77,25 @@ void test_raii()
     // here fclose() is called by sp deleter
 }
 
+void test_finally()
+{
+    try
+    {
+        FILE *f = nullptr;
+        fopen_s(&f, "raii.cpp", "r");
+        auto _ = gsl::finally([&f]() { if (f) fclose(f); cout << "file closed\n"; });
+
+        char buf[100];
+        fread(buf, sizeof(char), sizeof(buf) / sizeof(char), f);
+
+        throw std::exception("test finally\n");
+    }
+    catch (const std::exception &e)
+    {
+        cout << e.what();
+    }
+}
+
 int main()
 {   
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -88,6 +107,8 @@ int main()
     test_slicing(d);
 
     test_raii();
+
+    test_finally();
 
     //  int arr[10];           // warning C26494
     //  int* p = arr;          // warning C26485

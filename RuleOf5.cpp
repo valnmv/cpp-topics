@@ -16,9 +16,9 @@ RuleOf5::RuleOf5(uint8_t *d, size_t len)
 }
 
 // Note: if not needed, delete copy assignment op to avoid slicing
-RuleOf5::RuleOf5(const RuleOf5 &other) : length{other.length}, 
-    data{new uint8_t[length]}
+RuleOf5::RuleOf5(const RuleOf5 &other) : length{other.length} 
 {   
+    data = new uint8_t[length];
     memcpy(data, other.data, length);
 }
 
