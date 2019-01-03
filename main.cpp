@@ -6,12 +6,13 @@
 #include "copy-and-swap.h"
 #include "slicing.h"
 #include "raii.h"
+#include "overload.h"
 
 #include <iostream>
 
 // detect memory leaks
 #define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>  
+#include <cstdlib>  
 #include <crtdbg.h>  
 
 using namespace std;
@@ -109,6 +110,8 @@ int main()
     test_raii();
 
     test_finally();
+
+    overload::test();
 
     //  int arr[10];           // warning C26494
     //  int* p = arr;          // warning C26485

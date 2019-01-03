@@ -6,6 +6,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RuleOf5.cpp" />
     <ClCompile Include="raii.cpp" />
+    <ClCompile Include="overload.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -13,6 +14,7 @@
     <ClInclude Include="copy-and-swap.h" />
     <ClInclude Include="slicing.h" />
     <ClInclude Include="raii.h" />
+    <ClInclude Include="overload.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

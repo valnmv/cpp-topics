@@ -157,7 +157,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="copy-and-swap.h" />
+    <ClInclude Include="overload.h" />
     <ClInclude Include="pch.h" />
+    <ClCompile Include="overload.cpp" />
     <ClCompile Include="raii.cpp" />
     <ClInclude Include="raii.h" />
     <ClInclude Include="RuleOf5.h" />

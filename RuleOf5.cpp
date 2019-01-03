@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "RuleOf5.h"
 
-#include <memory.h>
-
 RuleOf5::RuleOf5() noexcept
 {
     // nothing to do here, members are default-initialized with brace-or-equal-initialization
