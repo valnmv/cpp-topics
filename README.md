@@ -14,5 +14,6 @@ Exception safety
 
 Avoid slicing, clone()
 
-Overload + override - method selection starts from base class, thus even if there is better match 
-in a derived class it will not be selected!
+Overload + override - method selection starts from given type of the variable, not from the 
+actual type in case of pointer/reference. Even if there is better match in a derived class 
+it will not be selected!
