@@ -7,9 +7,9 @@
 #include "slicing.h"
 #include "raii.h"
 #include "overload.h"
+#include "span.h"
 
 #include <iostream>
-
 // detect memory leaks
 #define _CRTDBG_MAP_ALLOC
 #include <cstdlib>  
@@ -62,7 +62,7 @@ void test_raii()
     auto sp = shared_file_ptr("raii.cpp", "r");
 
     char buf[100];
-    fread(buf, sizeof(char), sizeof(buf) / sizeof(char), sp.get());
+    fread(&buf[0], sizeof(char), sizeof(buf) / sizeof(char), sp.get());
 
     // here fclose() is called by sp deleter
 }
@@ -76,7 +76,7 @@ void test_finally()
         auto _ = gsl::finally([&f]() { if (f) fclose(f); cout << "file closed\n"; });
 
         char buf[100];
-        fread(buf, sizeof(char), sizeof(buf) / sizeof(char), f);
+        fread(&buf[0], sizeof(char), sizeof(buf) / sizeof(char), f);
 
         throw std::exception("test finally\n");
     }
@@ -116,6 +116,7 @@ int main()
     // evaluation of an expression. Furthermore, the prior value shall be 
     // accessed only to determine the value to be stored.
     int j = ++i + i++;
+    j;
 
     // *
 
@@ -127,14 +128,16 @@ int main()
     slicing::test();
     overload::test();
 
-    //  int arr[10];           // warning C26494
-    //  int* p = arr;          // warning C26485
+    spantest::spantest();
 
-    ////  [[gsl::suppress(bounds.1)]] // This attribute suppresses Bounds rule #1
-    //  {
-    //      int* q = p + 1;    // warning C26481 (suppressed)
-    //      p = q++;           // warning C26481 (suppressed)
-    //  }
+    int arr[10];           // warning C26494
+    int* p = arr;          // warning C26485
+
+    //  [[gsl::suppress(bounds.1)]] // This attribute suppresses Bounds rule #1
+    {
+        int* q = p + 1;    // warning C26481 (suppressed)
+        p = q++;           // warning C26481 (suppressed)
+    }
 
     return 0;
 }

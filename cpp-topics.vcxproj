@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,7 +156,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="span.cpp" />
     <ClInclude Include="copy-and-swap.h" />
+    <ClInclude Include="gsl-lite.hpp" />
     <ClInclude Include="overload.h" />
     <ClInclude Include="pch.h" />
     <ClCompile Include="overload.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="raii.h" />
     <ClInclude Include="RuleOf5.h" />
     <ClInclude Include="slicing.h" />
+    <ClInclude Include="span.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="copy-and-swap.cpp" />
