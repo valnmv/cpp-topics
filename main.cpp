@@ -57,17 +57,6 @@ void test_RuleOf4Half()
     r1 = r2;
 }
 
-void test_slicing(B& b)
-{
-    // object attributes are sliced by assigning derived-to-base
-    // here the method is sliced
-    // disabled by deleting copy ctor and copy=
-
-    auto b2 = b; // oops, slices the object; d.m() will return 'B'
-    auto &b3 = b; // ... while the reference is fine
-    std::cout << b.m() << " " << b2.m() << " " << b3.m();
-}
-
 void test_raii()
 {
     auto sp = shared_file_ptr("raii.cpp", "r");
@@ -97,20 +86,45 @@ void test_finally()
     }
 }
 
+struct ArrayByVal
+{
+    char data[10];
+};
+
+void f(ArrayByVal v)
+{
+    cout << v.data[2];
+    v.data[2] = 'x';
+}
+
 int main()
 {   
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
    
+    ArrayByVal v;
+    strcpy_s(v.data, "abcdef");
+    f(v);
+
+    // * undefined:  if you read a variable twice in an expression 
+    // where you also write it, the result is undefined
+    int a[2]{ 3, 5 };
+    int i = 0;
+    a[i] = i++; // ???
+
+    // * undefined: Between the previous and next sequence point a scalar 
+    // object shall have its stored value modified at most once by the 
+    // evaluation of an expression. Furthermore, the prior value shall be 
+    // accessed only to determine the value to be stored.
+    int j = ++i + i++;
+
+    // *
+
     test_RuleOf5();   
     test_RuleOf4Half();
- 
-    D d;
-    test_slicing(d);
-
     test_raii();
-
     test_finally();
 
+    slicing::test();
     overload::test();
 
     //  int arr[10];           // warning C26494

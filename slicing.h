@@ -5,35 +5,49 @@
 // function instead of copy construction / assignment
 
 #include "pch.h"
-
 #include "gsl-lite.hpp"
+#include <iostream>
 
-// In order to fix slicing suppress copying in polymorphic classes as in
-// the commented out lines and implement clone() instead
-class B 
+namespace slicing
 {
-public:
-    virtual char m() noexcept { return 'B'; }
+    // In order to fix slicing suppress copying in polymorphic classes as in
+    // the commented out lines and implement clone() instead
+    class B
+    {
+    public:
+        virtual char m() noexcept { return 'B'; }
 
-    //B() = default;
-    //virtual ~B() = default;
+        //B() = default;
+        //virtual ~B() = default;
 
-    // suppress copying
-    //B(const B&) = delete;
-    //B& operator=(const B&) = delete;
+        // suppress copying
+        //B(const B&) = delete;
+        //B& operator=(const B&) = delete;
 
-    // provide clone()
-    //virtual gsl::owner<B*> clone() = 0;    
-};
+        // provide clone()
+        //virtual gsl::owner<B*> clone() = 0;    
+    };
 
-class D : public B 
-{
-public:
-    char m() noexcept override { return 'D'; }
+    class D : public B
+    {
+    public:
+        char m() noexcept override { return 'D'; }
 
-    //~D() { /* ... */ }
+        //~D() { /* ... */ }
 
-    // implement clone()
-//    gsl::owner<D*> clone() override { /* ... */ return nullptr; }
-};
+        // implement clone()
+    //    gsl::owner<D*> clone() override { /* ... */ return nullptr; }
+    };
+
+    void test()
+    {
+        using std::cout;
+
+        // object attributes are sliced when assigning derived-to-base
+        D d;
+        B b1 = d;  // D::f() is sliced
+        auto &b2 = d; // ... while the reference is fine
+        cout << d.m() << " " << b1.m() << " " << b2.m();
+    }
+}
 
