@@ -98,7 +98,11 @@ void f(ArrayByVal v)
     Expects(v.data[2] == 'c');
     cout << v.data[2];
     v.data[2] = 'x';
-    Ensures(v.data[2] == 'x');
+    char c = gsl::at(v.data, 2);
+    Ensures(c == 'x');
+
+    ArrayByVal *np = nullptr;
+//    gsl::not_null<ArrayByVal*>p(np);
 }
 
 int main()
