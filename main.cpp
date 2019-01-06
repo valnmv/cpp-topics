@@ -9,6 +9,8 @@
 #include "overload.h"
 #include "span.h"
 
+#include "gsl-lite.hpp"
+
 #include <iostream>
 // detect memory leaks
 #define _CRTDBG_MAP_ALLOC
@@ -93,8 +95,10 @@ struct ArrayByVal
 
 void f(ArrayByVal v)
 {
+    Expects(v.data[2] == 'c');
     cout << v.data[2];
     v.data[2] = 'x';
+    Ensures(v.data[2] == 'x');
 }
 
 int main()

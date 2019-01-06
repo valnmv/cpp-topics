@@ -2,10 +2,17 @@
 #include "gsl-lite.hpp"
 #include "span.h"
 
+#include <chrono>
+#include <thread>
+#include <iostream>
+
 namespace spantest
 {
     void increment(gsl::span<int> s)
     {
+        //using namespace std::chrono_literals;
+        //std::this_thread::sleep_for(1us);
+
         for (int &x : s) ++x;
     }
 
@@ -18,3 +25,4 @@ namespace spantest
         increment({a, 10});
     }
 }
+
