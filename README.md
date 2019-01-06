@@ -4,7 +4,9 @@ Rule Of 5
 
 Copy-and-swap, <https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom>
 
-Guidelines Support Library (GSL)
+Guidelines Support Library (GSL), [gsl-lite](https://github.com/martinmoene/gsl-lite)
+
+Testing [Catch2](https://github.com/catchorg/Catch2)
 
 RAII
 
